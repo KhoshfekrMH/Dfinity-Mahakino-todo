@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "dfinityMahakinoTodo_backend": {
+      "main": "src/dfinityMahakinoTodo_backend/main.mo",
+      "type": "motoko"
+    },
+    "dfinityMahakinoTodo_frontend": {
+      "dependencies": [
+        "dfinityMahakinoTodo_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/dfinityMahakinoTodo_frontend/src/index.html"
+      },
+      "source": [
+        "src/dfinityMahakinoTodo_frontend/assets",
+        "dist/dfinityMahakinoTodo_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
