@@ -1,6 +1,7 @@
 # Various IDEs and Editors
 .vscode/
-.idea/
+.idea/*
+!.idea/rcb-settings.xml
 **/*~
 
 # Mac OSX temporary files
