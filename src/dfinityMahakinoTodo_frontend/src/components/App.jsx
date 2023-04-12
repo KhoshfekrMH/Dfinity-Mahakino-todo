@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {Footer} from "./Footer";
 import {Header} from "./Header";
 import {CreateArea} from "./CreateArea";
@@ -15,11 +15,40 @@ export const App = () => {
         });
     }
 
+    useEffect(() => {
+        console.log ("useEffect is triggerd!");
+        fetchData ();
+    }, []);
+
+    async function fetchData() {
+        const notesArray = await dfinityMahakinoTodo_backend.readNote ();
+        setNotes ( notesArray );
+    }
+    
+    function deleteNote(id) {
+        dfinityMahakinoTodo_backend.removeNote(id);
+        setNotes(prevState => {
+            return prevState.filter((noteItem, index) => {
+               return index !== id;
+            });
+        });
+    }
+
     return (
         <div>
             <Header />
             <CreateArea onAdd={addNote}/>
-            <Note />
+            {notes.map((noteItem, index) => {
+                return (
+                    <Note
+                        key={index}
+                        id={index}
+                        title={noteItem.title}
+                        content={noteItem.content}
+                        onDelete={deleteNote}
+                    />
+                );
+            })}
             <Footer />
         </div>
     );
